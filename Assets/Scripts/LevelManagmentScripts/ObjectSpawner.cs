@@ -21,14 +21,20 @@ public class ObjectSpawner : MonoBehaviour
 
     IEnumerator SpawnFire()
     {
-        trees[Random.Range(0, trees.Length)].StartFire();
+        TreeScript tree;
+        int i = 0;
+        while ((tree = trees[Random.Range(0, trees.Length)]).HasFire && i < trees.Length) i++;
+        if(i < trees.Length) tree.StartFire();
         yield return new WaitForSeconds(fireSpawnTime);
         StartCoroutine(SpawnFire());
     }
 
     IEnumerator SpawnAnimal()
     {
-        trees[Random.Range(0, trees.Length)].SpawnAnimal();
+        TreeScript tree;
+        int i = 0;
+        while ((tree = trees[Random.Range(0, trees.Length)]).HasAnimal && i < trees.Length) i++;
+        if (i < trees.Length) tree.SpawnAnimal();
         yield return new WaitForSeconds(animalSpawnTime);
         StartCoroutine(SpawnAnimal());
     }
