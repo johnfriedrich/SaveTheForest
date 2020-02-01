@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+using System.Linq;
 using Interact;
+using Manager;
+using UnityEngine;
 
 public class Navigation : MonoBehaviour
 {
-    GameObject Player;
+    private GameObject _player;
     List<NavigationElement> elements;
     public static Navigation Manager;
     [SerializeField]
@@ -15,9 +16,6 @@ public class Navigation : MonoBehaviour
     GameObject fireSpritePrefab;
     [SerializeField]
     GameObject truckSpritePrefab;
-    [SerializeField]
-    GameObject NavElementPrefab;
-
     private void Awake()
     {
         if (Manager)
@@ -29,20 +27,34 @@ public class Navigation : MonoBehaviour
             Manager = this;
         }
         elements = new List<NavigationElement>();
-        Player = GameObject.FindGameObjectWithTag("Player");
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    private void Update()
+    private void Start()
     {
-        foreach(NavigationElement element in elements)
+        EventManager.Instance.OnProblemSolvedEvent += RemoveElement;
+    }
+
+    public void RemoveElement(Grabable grabable)
+    {
+        NavigationElement delete = null;
+        foreach (var element in elements)
         {
-            element.UpdatePositionOnBar(Player.transform);
+            if (!element.Type)
+            {
+                continue;
+            }
+            if (element.Type.Equals(grabable))
+            {
+                delete = element;
+            }
         }
-    }
 
-    public void RemoveElement(NavigationElement element)
-    {
-        elements.Remove(element);
+        if (delete)
+        {
+            elements.Remove(delete);
+            Destroy(delete.gameObject);
+        }
     }
 
     public void AddElement(GameObject parent, Problem problem)
@@ -63,9 +75,8 @@ public class Navigation : MonoBehaviour
                 prefab = null;
                 break;
         }
-        GameObject go = Instantiate(NavElementPrefab, transform);
-        NavigationElement navigationElement = go.GetComponent<NavigationElement>();
-        navigationElement.FillNavigationElement(prefab, parent);
+        var navigationElement = Instantiate(prefab, transform).GetComponent<NavigationElement>();
+        navigationElement.FillNavigationElement(parent, _player);
         elements.Add(navigationElement);
     }
 }

@@ -28,6 +28,7 @@ public class TruckScript : MonoBehaviour
         }
         
         _alreadyDeleviredGrabables.Add(grabable);
+        EventManager.Instance.ProblemSolved(grabable);
         LevelManager.Instance.ProblemSolved(Problem.Animal);
     }
 }
