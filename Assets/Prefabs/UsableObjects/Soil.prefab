@@ -159,8 +159,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 4.61, z: 1}
-  m_Center: {x: 0, y: 2.19, z: 0}
+  m_Size: {x: 1, y: 1.17, z: 1}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1001 &227532072175218462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171,12 +171,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 7965f89046430024e9a0ff2927aecd2e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000002448827
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7965f89046430024e9a0ff2927aecd2e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.881784e-18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7965f89046430024e9a0ff2927aecd2e,
         type: 3}
@@ -223,6 +223,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 7965f89046430024e9a0ff2927aecd2e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 903cf4e8917693248a024cca13d7096f, type: 2}
     - target: {fileID: -927199367670048503, guid: 7965f89046430024e9a0ff2927aecd2e,
         type: 3}
       propertyPath: m_Name

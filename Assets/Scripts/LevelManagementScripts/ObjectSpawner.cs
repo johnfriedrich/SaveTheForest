@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Interact;
+using Manager;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -83,6 +84,7 @@ namespace LevelManagementScripts
             {
                 Navigation.Manager.AddElement(tree.gameObject, problem);
             }
+            EventManager.Instance.GrabableSpawned(grabable);
             return i < usableObjects.Count;
         }
     }

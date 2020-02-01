@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Enums;
+using Manager;
 using UnityEngine;
 using Enumerable = System.Linq.Enumerable;
 
@@ -56,6 +57,7 @@ namespace Interact
                 {
                     return null;
                 }
+                EventManager.Instance.GrabableRemoved(grabToRemove);
                 return grabToRemove;
             }
 
