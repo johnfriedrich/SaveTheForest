@@ -77,12 +77,16 @@ namespace LevelManagementScripts
                 grabable = fire;
             }
             List<UsableObject> usableObjects = LevelManager.Instance.TreeObjects;
+            if (usableObjects.Count == 0)
+            {
+                 return true;
+            }
             int i = 0;
             UsableObject tree;
             while (!(tree=usableObjects[Random.Range(0, usableObjects.Count)]).TryPut(grabable) && i < usableObjects.Count) i++;
             if (i < usableObjects.Count)
             {
-                Navigation.Manager.AddElement(tree.gameObject, problem);
+                Navigation.Manager.AddElement(tree.gameObject.GetComponentInChildren<Grabable>().gameObject, problem);
             }
             EventManager.Instance.GrabableSpawned(grabable);
             return i < usableObjects.Count;

@@ -14,6 +14,8 @@ public class Navigation : MonoBehaviour
     [SerializeField]
     GameObject fireSpritePrefab;
     [SerializeField]
+    GameObject truckSpritePrefab;
+    [SerializeField]
     GameObject NavElementPrefab;
 
     private void Awake()
@@ -26,12 +28,12 @@ public class Navigation : MonoBehaviour
         {
             Manager = this;
         }
+        elements = new List<NavigationElement>();
     }
 
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        elements = new List<NavigationElement>();
     }
 
     private void Update()
@@ -50,17 +52,24 @@ public class Navigation : MonoBehaviour
     public void AddElement(GameObject parent, Problem problem)
     {
         GameObject prefab;
-        if(problem == Problem.Fire)
+        switch (problem)
         {
-            prefab = fireSpritePrefab;
-        }
-        else
-        {
-            prefab = koalaSpritePrefab;
+            case Problem.Animal:
+                prefab = koalaSpritePrefab;
+                break;
+            case Problem.Fire:
+                prefab = fireSpritePrefab;
+                break;
+            case Problem.Truck:
+                prefab = truckSpritePrefab;
+                break;
+            default:
+                prefab = null;
+                break;
         }
         GameObject go = Instantiate(NavElementPrefab, transform);
         NavigationElement navigationElement = go.GetComponent<NavigationElement>();
-        navigationElement.FillNavigationElement(parent.transform.position, prefab, parent);
+        navigationElement.FillNavigationElement(prefab, parent);
         elements.Add(navigationElement);
     }
 }

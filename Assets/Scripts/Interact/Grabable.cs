@@ -27,7 +27,7 @@ namespace Interact
             {
                 if (AudioClip != null)
                 {
-                    _audioSource.PlayOneShot(AudioClip);
+                    _audioSource.PlayOneShot(AudioClip, 0.5f);
                 }
 
                 timer = 0;

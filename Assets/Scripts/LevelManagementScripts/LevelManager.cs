@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 
-public enum Problem { Fire, Animal};
+public enum Problem { Fire, Animal, Truck};
 
 public class LevelManager : MonoBehaviour
 {
@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
 
     private void GameOver()
     {
-        throw new NotImplementedException();
+        //dostuff
     }
 
     public void ProblemSpawned(Problem problem)

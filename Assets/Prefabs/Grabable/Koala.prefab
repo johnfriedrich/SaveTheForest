@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3cf7f00f11d5a46abb8beeb0cb3ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cooldown: 10
+  AudioClip: {fileID: 8300000, guid: cb1d4bc0caf5b6e4d8554bdb6037e63d, type: 3}
   Type: 1
   RequiredType: 11
   UsableAction: {fileID: 4518968470929645932}
