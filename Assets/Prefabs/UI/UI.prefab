@@ -92,8 +92,6 @@ MonoBehaviour:
   koalaSpritePrefab: {fileID: 8605568743745380998}
   fireSpritePrefab: {fileID: 4434571654247162448}
   truckSpritePrefab: {fileID: 3748287402079598602}
-  NavElementPrefab: {fileID: 5533203998134852122, guid: b88f7e7b2eeee334cb5d02668734b57b,
-    type: 3}
 --- !u!1 &502788839859519867
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +529,7 @@ GameObject:
   - component: {fileID: 3896057475281795244}
   - component: {fileID: 4505079734943312660}
   - component: {fileID: 6642089189112437660}
+  - component: {fileID: 6263130625672531813}
   m_Layer: 5
   m_Name: TruckImage
   m_TagString: Untagged
@@ -593,6 +592,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6263130625672531813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3748287402079598602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c1963e7a914d44ab19860524ce9a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3888232683005010033
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +770,7 @@ GameObject:
   - component: {fileID: 612217942454967621}
   - component: {fileID: 8240528139389430039}
   - component: {fileID: 5558012122388493895}
+  - component: {fileID: 4244995769982064859}
   m_Layer: 5
   m_Name: FireImage
   m_TagString: Untagged
@@ -821,6 +833,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4244995769982064859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4434571654247162448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c1963e7a914d44ab19860524ce9a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6251095735071902540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,7 +1273,7 @@ MonoBehaviour:
   MaxAnimals: {fileID: 6251095735408787714}
   FireCount: {fileID: 6251095736544474308}
   MaxFires: {fileID: 6251095735455489222}
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 502788839859519867}
 --- !u!1 &6251095735455489223
 GameObject:
   m_ObjectHideFlags: 0
@@ -2439,6 +2463,7 @@ GameObject:
   - component: {fileID: 4642781509093186219}
   - component: {fileID: 345574965774932308}
   - component: {fileID: 386440623538863793}
+  - component: {fileID: 6673232409985642590}
   m_Layer: 5
   m_Name: KoalaImage
   m_TagString: Untagged
@@ -2501,6 +2526,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6673232409985642590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8605568743745380998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c1963e7a914d44ab19860524ce9a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8831268330218252276
 GameObject:
   m_ObjectHideFlags: 0
