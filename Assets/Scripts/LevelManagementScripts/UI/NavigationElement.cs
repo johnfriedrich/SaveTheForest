@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Interact;
+using Manager;
 
 public class NavigationElement : MonoBehaviour
 {
@@ -12,6 +14,11 @@ public class NavigationElement : MonoBehaviour
     bool beingCarried;
     Image _image;
 
+    private void Start()
+    {
+        EventManager.Instance.OnGrabableRemovedEvent += OnPickUp;
+     //   EventManager.Instance.OnGrabableSpawnedEvent += 
+    }
 
     public NavigationElement FillNavigationElement(GameObject prefab, GameObject parent)
     {
@@ -25,7 +32,6 @@ public class NavigationElement : MonoBehaviour
 
     private void Update()
     {
-        CheckParentDeath();
         if (beingCarried)
         {
             _image.enabled = false;
@@ -48,6 +54,7 @@ public class NavigationElement : MonoBehaviour
 
     public void UpdatePositionOnBar(Transform playerTransform)
     {
+        CheckParentDeath();
         Vector2 playerLookDirection2D = new Vector2(playerTransform.forward.x, playerTransform.forward.z);
         Vector3 playerToTree = _parent.transform.position - playerTransform.position;
         Vector2 playerToTree2D = new Vector2(playerToTree.x, playerToTree.z).normalized;
@@ -66,6 +73,22 @@ public class NavigationElement : MonoBehaviour
         else
         {
             rTransform.anchoredPosition = new Vector2(-200, 0);
+        }
+    }
+
+    private void OnPickUp(Grabable grabable)
+    {
+        if(grabable.gameObject == _parent)
+        {
+            beingCarried = true;
+        }
+    }
+
+    private void OnSetDown(Grabable grabable)
+    {
+        if(grabable.gameObject == _parent)
+        {
+            beingCarried = false;
         }
     }
 }
