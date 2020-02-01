@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -10,6 +11,9 @@ public class UIManager : MonoBehaviour
 
     public TMPro.TMP_Text FireCount;
     public TMPro.TMP_Text MaxFires;
+
+    [SerializeField] private GameObject pauseMenu;
+    private bool _isPaused;
 
     private void Start()
     {
@@ -21,5 +25,43 @@ public class UIManager : MonoBehaviour
     {
         AnimalCount.SetText(LevelManager.Instance.Animals.ToString());
         FireCount.SetText(LevelManager.Instance.Fires.ToString());
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            _isPaused = !_isPaused;
+
+        TogglePauseMenu(_isPaused);
+    }
+
+    public void TogglePauseMenu(bool isPaused)
+    {
+        switch (isPaused)
+        {
+            case true:
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+                pauseMenu.SetActive(true);
+                break;
+            case false:
+                Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.Locked;
+                pauseMenu.SetActive(false);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ContinueGame()
+    {
+        _isPaused = false;
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
