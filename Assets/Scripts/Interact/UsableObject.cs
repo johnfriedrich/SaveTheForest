@@ -18,7 +18,7 @@ namespace Interact
         [SerializeField] private List<Grabable> _grabables = new List<Grabable>();
 
         public bool IsOnFire => Enumerable.Any(_grabables, grabable => grabable.Type == InteractableEnum.Fire);
-        
+
         public bool HasNeedy => Enumerable.Any(_grabables, grabable => grabable.Type == InteractableEnum.Koala);
 
         private void Start()
@@ -50,6 +50,11 @@ namespace Interact
                 if (grabToRemove.Type != InteractableEnum.Water)
                 {
                     _grabables.Remove(grabToRemove);
+                }
+
+                if (!grabToRemove.CanBeGrabbedByPlayer)
+                {
+                    return null;
                 }
                 return grabToRemove;
             }
