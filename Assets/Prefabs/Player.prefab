@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3cf7f00f11d5a46abb8beeb0cb3ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 10
+  Type: 11
   RequiredType: 3
   UsableAction: {fileID: 0}
   CanBeGrabbedByPlayer: 0

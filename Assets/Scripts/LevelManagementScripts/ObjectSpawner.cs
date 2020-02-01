@@ -19,8 +19,22 @@ namespace LevelManagementScripts
         private float _fireTimer;
         private float _animalTimer;
 
+        public static ObjectSpawner Instance => _instance;
+
+        private static ObjectSpawner _instance;
+
+        private void Awake()
+        {
+            _instance = this;
+        }
+
         // Start is called before the first frame update
 
+
+        public void AddUsable(UsableObject usableObject)
+        {
+            _usableObjects.Add(usableObject);
+        }
 
         private void Update()
         {

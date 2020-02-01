@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Enums;
 using Interact;
 using UnityEngine;
@@ -28,6 +29,15 @@ public class PlayerController : MonoBehaviour
     private float _cameraRotationX;
     private float _currentCameraRotationX;
     private Rigidbody _rb;
+
+    private static PlayerController _instance;
+
+    public static PlayerController Instance => _instance;
+
+    private void Awake()
+    {
+        _instance = this;
+    }
 
     void Start()
     {
@@ -152,14 +162,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Drop()
+    public Grabable Drop()
     {
         //Make sure gravity applies to this object
         _carryingObject.GetComponent<Rigidbody>().isKinematic = false;
         _carryingObject.GetComponent<BoxCollider>().enabled = true;
         //unparent object
         _carryingObject.transform.SetParent(null);
+        var oldObject = _carryingObject;
         _carryingObject = _hands;
+        return oldObject;
     }
 
 }
