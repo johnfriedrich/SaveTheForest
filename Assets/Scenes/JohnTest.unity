@@ -407,6 +407,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6570366837433438043, guid: e25fd328222c0cc429ee5cef79ea5e64,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6570366837433438045, guid: e25fd328222c0cc429ee5cef79ea5e64,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -926,7 +931,7 @@ PrefabInstance:
     - target: {fileID: 4074672826664781841, guid: 9f786314d1efd214db6f675f3ceba15b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.5331225
+      value: -25.4
       objectReference: {fileID: 0}
     - target: {fileID: 4074672826664781841, guid: 9f786314d1efd214db6f675f3ceba15b,
         type: 3}
@@ -978,10 +983,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4074672826664781842, guid: 9f786314d1efd214db6f675f3ceba15b,
+        type: 3}
+      propertyPath: fireSpawnTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4074672826664781843, guid: 9f786314d1efd214db6f675f3ceba15b,
         type: 3}
       propertyPath: m_Name
       value: Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631068282989198144, guid: 9f786314d1efd214db6f675f3ceba15b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f786314d1efd214db6f675f3ceba15b, type: 3}
