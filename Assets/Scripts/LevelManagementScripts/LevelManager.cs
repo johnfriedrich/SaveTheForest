@@ -50,6 +50,7 @@ public class LevelManager : MonoBehaviour
         _countdown -= Time.deltaTime;
         if(_countdown <= 0)
         {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene(3);
         }
     }
@@ -66,6 +67,7 @@ public class LevelManager : MonoBehaviour
 
     private void GameOver()
     {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(2);
     }
 
