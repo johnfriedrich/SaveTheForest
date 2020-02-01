@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Grabable _carryingObject;
 
-    private bool CanCarry => _carryingObject.Type == InteractableEnum.Hands;
+    public bool CanCarry => _carryingObject.Type == InteractableEnum.Hands;
 
     [SerializeField] private Transform _grabableHook;
 
@@ -124,6 +124,15 @@ public class PlayerController : MonoBehaviour
         RaycastHit target;
         if (Physics.Raycast(transform.position, transform.forward, out target, pickUpRange))
         {
+            var treeFarm = target.transform.GetComponent<TreeFarm>();
+            if (treeFarm)
+            {
+                var pickupable = treeFarm.GiveSapling();
+                pickupable.CanBeGrabbedByPlayer = true;
+                PickUp(pickupable);
+                return;
+            }
+
             var grabable = target.transform.GetComponent<Grabable>();
             if (grabable != null && grabable.CanBeGrabbedByPlayer)
             {
@@ -152,7 +161,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PickUp(Grabable grabable)
+    public void PickUp(Grabable grabable)
     {
         _carryingObject = grabable;
         //Fuck off gravity
@@ -161,7 +170,6 @@ public class PlayerController : MonoBehaviour
         grabable.gameObject.transform.SetParent(_grabableHook, false);
         grabable.gameObject.transform.position = _grabableHook.position;
         EventManager.Instance.GrabableSpawned(_carryingObject);
-
     }
 
     public Grabable Drop()

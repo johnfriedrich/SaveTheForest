@@ -47,14 +47,18 @@ public class NavigationElement : MonoBehaviour
         if (!_parent)
         {
             Destroy(go);
-            Navigation.Manager.RemoveElement(this);
-            Destroy(gameObject);
+            //Navigation.Manager.RemoveElement(this);
+            //Destroy(gameObject);
         }
     }
 
     public void UpdatePositionOnBar(Transform playerTransform)
     {
         CheckParentDeath();
+        if (!_parent)
+        {
+            return;
+        }
         Vector2 playerLookDirection2D = new Vector2(playerTransform.forward.x, playerTransform.forward.z);
         Vector3 playerToTree = _parent.transform.position - playerTransform.position;
         Vector2 playerToTree2D = new Vector2(playerToTree.x, playerToTree.z).normalized;
