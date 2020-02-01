@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423d1da1d0320da4da084043996d77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxFires: 40
+  MaxAnimals: 40
