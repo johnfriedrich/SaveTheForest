@@ -23,8 +23,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241734393940816909}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.607}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.767, z: 1.607}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6570366837015613311}
@@ -73,6 +73,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3cf7f00f11d5a46abb8beeb0cb3ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cooldown: 10
+  AudioClip: {fileID: 0}
   Type: 11
   RequiredType: 3
   UsableAction: {fileID: 0}
@@ -210,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
-  pickUpRange: 2
+  pickUpRange: 3
   _carryingObject: {fileID: 2412518165234827712}
   _grabableHook: {fileID: 2253532081847268919}
   _hands: {fileID: 2412518165234827712}
