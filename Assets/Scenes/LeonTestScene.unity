@@ -872,6 +872,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1663494321, guid: 5e5c56a0cc9161542968de9c4b538206, type: 3}
+      propertyPath: m_Name
+      value: NavPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663494323, guid: 5e5c56a0cc9161542968de9c4b538206, type: 3}
+      propertyPath: m_Color.r
+      value: 0.122641504
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663494323, guid: 5e5c56a0cc9161542968de9c4b538206, type: 3}
+      propertyPath: m_Color.g
+      value: 0.122641504
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663494323, guid: 5e5c56a0cc9161542968de9c4b538206, type: 3}
+      propertyPath: m_Color.b
+      value: 0.122641504
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663494323, guid: 5e5c56a0cc9161542968de9c4b538206, type: 3}
+      propertyPath: m_Color.a
+      value: 0.47058824
+      objectReference: {fileID: 0}
     - target: {fileID: 3476693694151945416, guid: 5e5c56a0cc9161542968de9c4b538206,
         type: 3}
       propertyPath: m_Name
@@ -932,5 +952,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6251095735432584116, guid: 5e5c56a0cc9161542968de9c4b538206,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e5c56a0cc9161542968de9c4b538206, type: 3}
+--- !u!1 &6251095735457374562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1663494321, guid: 5e5c56a0cc9161542968de9c4b538206,
+    type: 3}
+  m_PrefabInstance: {fileID: 6251095735457374561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6251095735457374563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251095735457374562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624b6afec3612364ea0d83429b374ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  koalaSpritePrefab: {fileID: 0}
+  fireSpritePrefab: {fileID: 0}

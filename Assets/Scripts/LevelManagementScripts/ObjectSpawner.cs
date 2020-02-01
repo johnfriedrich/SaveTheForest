@@ -9,7 +9,6 @@ namespace LevelManagementScripts
 {
     public class ObjectSpawner : MonoBehaviour
     {
-        [SerializeField] private List<UsableObject> _usableObjects;
         [SerializeField]
         private float animalSpawnTime;
         [SerializeField]
@@ -21,11 +20,7 @@ namespace LevelManagementScripts
         private float _animalTimer;
 
         // Start is called before the first frame update
-        private void Start()
-        {
-            _usableObjects = FindObjectsOfType<UsableObject>()
-                .Where(usableObject => usableObject.Type == InteractableEnum.Tree).ToList();
-        }
+
 
         private void Update()
         {
@@ -59,9 +54,10 @@ namespace LevelManagementScripts
 
         private bool SpawnGrabable(Grabable grabable)
         {
+            List<UsableObject> usableObjects = LevelManager.Instance.TreeObjects;
             int i = 0;
-            while (!_usableObjects[Random.Range(0, _usableObjects.Count)].TryPut(grabable) && i < _usableObjects.Count) i++;
-            return i < _usableObjects.Count;
+            while (!usableObjects[Random.Range(0, usableObjects.Count)].TryPut(grabable) && i < usableObjects.Count) i++;
+            return i < usableObjects.Count;
         }
     }
 }
