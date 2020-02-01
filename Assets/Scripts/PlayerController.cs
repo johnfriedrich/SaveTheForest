@@ -1,4 +1,5 @@
-﻿using Enums;
+﻿using System.Linq;
+using Enums;
 using Interact;
 using UnityEngine;
 
@@ -38,6 +39,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
             ShootRay();
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Interact();
+        }
         if (Input.GetKey("w")) transform.Translate(Vector3.forward * Time.deltaTime * 3);
         if (Input.GetKey("s")) transform.Translate(Vector3.back * Time.deltaTime * 3);
         if (Input.GetKey("a")) transform.Translate(Vector3.left * Time.deltaTime * 3);
@@ -46,6 +52,33 @@ public class PlayerController : MonoBehaviour
         Rotate();
 
         PerformRotation();
+    }
+
+    private void Interact()
+    {
+        var hitColliders = Physics.OverlapSphere(transform.position, 3).ToList();
+        foreach (var hitCollider in hitColliders)
+        {
+            var usableObject = hitCollider.GetComponent<UsableObject>();
+            if (usableObject)
+            {
+                var returnedObj = usableObject.TryHelp(_carryingObject);
+                if (returnedObj)
+                {
+                    if (returnedObj.UsableAction)
+                    {
+                        returnedObj.UsableAction.Use();
+                    }
+                    
+                    if (_carryingObject.UsableAction)
+                    {
+                        _carryingObject.UsableAction.Use();
+                    }
+                    PickUp(returnedObj);
+                }
+                return;
+            }
+        }
     }
 
     private void Rotate()
@@ -70,8 +103,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!CanCarry)
         {
-            Drop();
-            return;
+            if (_carryingObject != _hands)
+            {
+                Drop();
+                return;
+            }
         }
 
         RaycastHit target;
@@ -112,6 +148,8 @@ public class PlayerController : MonoBehaviour
         grabable.GetComponent<Rigidbody>().isKinematic = true;
         grabable.GetComponent<BoxCollider>().enabled = false;
         grabable.gameObject.transform.SetParent(_grabableHook, false);
+        grabable.gameObject.transform.position = _grabableHook.position;
+
     }
 
     private void Drop()
