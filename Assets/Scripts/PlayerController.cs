@@ -2,6 +2,7 @@
 using System.Linq;
 using Enums;
 using Interact;
+using Manager;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -159,6 +160,7 @@ public class PlayerController : MonoBehaviour
         grabable.GetComponent<BoxCollider>().enabled = false;
         grabable.gameObject.transform.SetParent(_grabableHook, false);
         grabable.gameObject.transform.position = _grabableHook.position;
+        EventManager.Instance.GrabableSpawned(_carryingObject);
 
     }
 
@@ -170,6 +172,7 @@ public class PlayerController : MonoBehaviour
         //unparent object
         _carryingObject.transform.SetParent(null);
         var oldObject = _carryingObject;
+        EventManager.Instance.GrabableSpawned(oldObject);
         _carryingObject = _hands;
         return oldObject;
     }
