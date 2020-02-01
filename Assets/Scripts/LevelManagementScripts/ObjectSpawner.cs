@@ -30,7 +30,7 @@ namespace LevelManagementScripts
             }
             else
             {
-                if (SpawnGrabable(fire))
+                if (SpawnGrabable(Problem.Fire))
                 {
                     LevelManager.Instance.ProblemSpawned(Problem.Fire);
                 }
@@ -43,7 +43,7 @@ namespace LevelManagementScripts
             }
             else
             {
-                if (SpawnGrabable(animal))
+                if (SpawnGrabable(Problem.Animal))
                 {
                     LevelManager.Instance.ProblemSpawned(Problem.Animal);
                 }
@@ -52,11 +52,25 @@ namespace LevelManagementScripts
         }
 
 
-        private bool SpawnGrabable(Grabable grabable)
+        private bool SpawnGrabable(Problem problem)
         {
+            Grabable grabable;
+            if(problem == Problem.Animal)
+            {
+                grabable = animal;
+            }
+            else
+            {
+                grabable = fire;
+            }
             List<UsableObject> usableObjects = LevelManager.Instance.TreeObjects;
             int i = 0;
-            while (!usableObjects[Random.Range(0, usableObjects.Count)].TryPut(grabable) && i < usableObjects.Count) i++;
+            UsableObject tree;
+            while (!(tree=usableObjects[Random.Range(0, usableObjects.Count)]).TryPut(grabable) && i < usableObjects.Count) i++;
+            if (i < usableObjects.Count)
+            {
+                Navigation.Manager.AddElement(tree.gameObject, problem);
+            }
             return i < usableObjects.Count;
         }
     }

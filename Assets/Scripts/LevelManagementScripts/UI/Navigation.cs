@@ -13,6 +13,8 @@ public class Navigation : MonoBehaviour
     GameObject koalaSpritePrefab;
     [SerializeField]
     GameObject fireSpritePrefab;
+    [SerializeField]
+    GameObject NavElementPrefab;
 
     private void Awake()
     {
@@ -29,6 +31,15 @@ public class Navigation : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        elements = new List<NavigationElement>();
+    }
+
+    private void Update()
+    {
+        foreach(NavigationElement element in elements)
+        {
+            element.UpdatePositionOnBar(Player.transform);
+        }
     }
 
     public void RemoveElement(NavigationElement element)
@@ -47,6 +58,9 @@ public class Navigation : MonoBehaviour
         {
             prefab = koalaSpritePrefab;
         }
-        elements.Add(new NavigationElement(parent.transform.position, prefab, parent));
+        GameObject go = Instantiate(NavElementPrefab, transform);
+        NavigationElement navigationElement = go.GetComponent<NavigationElement>();
+        navigationElement.FillNavigationElement(parent.transform.position, prefab, parent);
+        elements.Add(navigationElement);
     }
 }
