@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3cf7f00f11d5a46abb8beeb0cb3ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
-  RequiredType: 4
+  Type: 4
+  RequiredType: 5
   UsableAction: {fileID: 4218326431579309633}
   CanBeGrabbedByPlayer: 1
 --- !u!54 &8777931683446903788

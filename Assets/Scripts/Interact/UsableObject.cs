@@ -41,7 +41,7 @@ namespace Interact
             {
                 if (otherGrabable.UsableAction) otherGrabable.UsableAction.Use();
                 grabToRemove = thisGrabable;
-                thisGrabable.UsableAction.Use();
+                if (thisGrabable.UsableAction) thisGrabable.UsableAction.Use();
                 canHelp = true;
             }
 
