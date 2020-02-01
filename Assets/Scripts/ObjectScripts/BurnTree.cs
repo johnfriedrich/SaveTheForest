@@ -30,10 +30,10 @@ namespace ObjectScripts
 
         private void SwitchTreeToStump()
         {
+            LevelManager.Instance.TreeObjects.Remove(treeScript);
             stumpPrefab.SetActive(true);
             stumpPrefab.transform.SetParent(null);
-            stumpPrefab.name = "Stump";
-            
+
             Destroy(gameObject);
         }
     }

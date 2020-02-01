@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
 
     private void GameOver()
     {
-        throw new NotImplementedException();
+        //dostuff
     }
 
     public void ProblemSpawned(Problem problem)

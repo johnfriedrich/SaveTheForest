@@ -25,6 +25,14 @@ namespace Interact
         private void Start()
         {
             _grabables = GetComponentsInChildren<Grabable>().ToList();
+            if (Type == InteractableEnum.Tree)
+            {
+                var grab = _grabables.FirstOrDefault(grabable => grabable.Type == InteractableEnum.Stomp);
+                if (grab != null)
+                {
+                    _grabables.Remove(grab);
+                }
+            }
         }
 
         public virtual Grabable TryHelp(Grabable otherGrabable)
@@ -48,7 +56,7 @@ namespace Interact
 
             if (canHelp)
             {
-                if (grabToRemove.Type != InteractableEnum.Water)
+                if (grabToRemove.Type != InteractableEnum.Water && grabToRemove.Type != InteractableEnum.Sapling)
                 {
                     _grabables.Remove(grabToRemove);
                 }

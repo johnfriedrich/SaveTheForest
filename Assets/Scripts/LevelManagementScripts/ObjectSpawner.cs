@@ -77,6 +77,10 @@ namespace LevelManagementScripts
                 grabable = fire;
             }
             List<UsableObject> usableObjects = LevelManager.Instance.TreeObjects;
+            if (usableObjects.Count == 0)
+            {
+                 return true;
+            }
             int i = 0;
             UsableObject tree;
             while (!(tree=usableObjects[Random.Range(0, usableObjects.Count)]).TryPut(grabable) && i < usableObjects.Count) i++;

@@ -12,6 +12,7 @@
         BurnedTree,
         Sapling,
         FreshSoil,
-        Hands
+        Hands,
+        TreeFarm
     }
 }
