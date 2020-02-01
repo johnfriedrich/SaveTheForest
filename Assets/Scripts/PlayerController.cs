@@ -7,7 +7,10 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")] public float speed = 0;
     public float pickUpRange;
 
-    private bool _canCarry = true;
+    [SerializeField]
+    private Grabable _carryingObject;
+
+    private bool CanCarry => _carryingObject == null;
 
     [Header("Camera Settings")] public float minimumX = -90.0f;
     public float maximumX = 90.0f;
@@ -32,8 +35,8 @@ public class PlayerController : MonoBehaviour
 
     private void RotateCamera()
     {
-        float horizontal = Input.GetAxis("Mouse X") * cameraSmoothTime * Time.deltaTime;
-        float vertical = Input.GetAxis("Mouse Y") * cameraSmoothTime * Time.deltaTime;
+        var horizontal = Input.GetAxis("Mouse X") * cameraSmoothTime * Time.deltaTime;
+        var vertical = Input.GetAxis("Mouse Y") * cameraSmoothTime * Time.deltaTime;
 
         transform.localRotation *= Quaternion.Euler(0.0f, horizontal, 0.0f);
         transform.localRotation *= Quaternion.Euler(-vertical, 0.0f, 0.0f);
@@ -42,10 +45,10 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        float vertical = Input.GetAxis("Vertical");
-        float horizontal = Input.GetAxis("Horizontal");
+        var vertical = Input.GetAxis("Vertical");
+        var horizontal = Input.GetAxis("Horizontal");
 
-        Vector3 movement = new Vector3(horizontal, 0.0f, vertical);
+        var movement = new Vector3(horizontal, 0.0f, vertical);
         movement *= speed * Time.deltaTime;
 
         _cc.SimpleMove(movement);
@@ -53,25 +56,60 @@ public class PlayerController : MonoBehaviour
 
     private void ShootRay()
     {
-        RaycastHit target;
+        if (!CanCarry)
+        {
+            Drop();
+            return;
+        }
 
+        RaycastHit target;
         if (Physics.Raycast(transform.position, transform.forward, out target, pickUpRange))
         {
-            if (target.transform.GetComponent<Grabable>())
+            var grabable = target.transform.GetComponent<Grabable>();
+            if (grabable)
             {
-                PickUp(target.transform.gameObject);
+                PickUp(grabable);
+                return;
+            }
+            
+            var usableObject = target.transform.GetComponent<UsableObject>();
+            
+            if (usableObject)
+            {
+               Use(usableObject);
+               return;
             }
         }
     }
 
-    private void PickUp(GameObject grabableObject)
+    private void Use(UsableObject usableObject)
     {
-        grabableObject.transform.SetParent(_grabableHook, false);
-        _canCarry = false;
+        var returnObject = usableObject.TryHelp(_carryingObject);
+        if (returnObject)
+        {
+            _carryingObject.UsableAction.Help();
+            Debug.Log($"{_carryingObject.Type} tries to help {usableObject.Type}");
+        }
     }
 
+    private void PickUp(Grabable grabable)
+    {
+        //Fuck off gravity
+        grabable.GetComponent<Rigidbody>().isKinematic = true;
+        grabable.gameObject.transform.SetParent(_grabableHook, false);
+        _carryingObject = grabable;
+    }
 
-    Quaternion ClampRotationAroundXAxis(Quaternion q)
+    private void Drop()
+    {
+        //Make sure gravity applies to this object
+        _carryingObject.GetComponent<Rigidbody>().isKinematic = false;
+        //unparent object
+        _carryingObject.transform.SetParent(null);
+        _carryingObject = null;
+    }
+
+    private Quaternion ClampRotationAroundXAxis(Quaternion q)
     {
         q.x /= q.w;
         q.y /= q.w;

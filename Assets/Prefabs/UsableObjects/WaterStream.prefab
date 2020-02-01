@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soundPlayer: {fileID: 3548226541173862210}
+  Type: 4
   _fireTransform: {fileID: 0}
   _animalTransform: {fileID: 0}
   _grabables: []
