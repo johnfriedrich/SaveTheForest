@@ -12,14 +12,13 @@ public class NavigationElement : MonoBehaviour
 
     public Grabable Type => _parent.GetComponent<Grabable>();
 
-    public NavigationElement FillNavigationElement(GameObject parent, GameObject player)
+    public void FillNavigationElement(GameObject parent, GameObject player)
     {
         _parent = parent;
         gameObject.SetActive(true);
         rTransform = GetComponent<RectTransform>();
         _image = GetComponent<Image>();
         _player = player;
-        return this;
     }
 
     private void Update()
@@ -59,22 +58,6 @@ public class NavigationElement : MonoBehaviour
         else
         {
             rTransform.anchoredPosition = new Vector2(-200, 0);
-        }
-    }
-
-    private void OnPickUp(Grabable grabable)
-    {
-        if(grabable.gameObject == _parent)
-        {
-            beingCarried = true;
-        }
-    }
-
-    private void OnSetDown(Grabable grabable)
-    {
-        if(grabable.gameObject == _parent)
-        {
-            beingCarried = false;
         }
     }
 }
