@@ -5,11 +5,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using UnityEngine.SceneManagement;
 
 public enum Problem { Fire, Animal, Truck};
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField]
+    float _timeToWin;
+    float _countdown;
     public static LevelManager Instance;
     int[] _problems =  new int[2];
     public int MaxFires;
@@ -38,6 +42,16 @@ public class LevelManager : MonoBehaviour
     {
         TreeObjects = FindObjectsOfType<UsableObject>()
             .Where(usableObject => usableObject.Type == InteractableEnum.Tree).ToList();
+        _countdown = _timeToWin;
+    }
+
+    private void Update()
+    {
+        _countdown -= Time.deltaTime;
+        if(_countdown <= 0)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     private void FixedUpdate()
@@ -52,7 +66,7 @@ public class LevelManager : MonoBehaviour
 
     private void GameOver()
     {
-        //dostuff
+        SceneManager.LoadScene(2);
     }
 
     public void ProblemSpawned(Problem problem)
