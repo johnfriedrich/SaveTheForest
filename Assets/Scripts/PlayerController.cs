@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
         var returnObject = usableObject.TryHelp(_carryingObject);
         if (returnObject)
         {
+            PickUp(returnObject);
             _carryingObject.UsableAction.Help();
             Debug.Log($"{_carryingObject.Type} tries to help {usableObject.Type}");
         }
