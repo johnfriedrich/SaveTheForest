@@ -1,37 +1,29 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Interact;
-using Manager;
 
 public class NavigationElement : MonoBehaviour
 {
-    GameObject go;
     RectTransform rTransform;
     GameObject _parent;
     bool beingCarried;
     Image _image;
+    private GameObject _player;
 
-    private void Start()
-    {
-        EventManager.Instance.OnGrabableRemovedEvent += OnPickUp;
-        EventManager.Instance.OnGrabableSpawnedEvent += OnSetDown;
-    }
+    public Grabable Type => _parent.GetComponent<Grabable>();
 
-    public NavigationElement FillNavigationElement(GameObject prefab, GameObject parent)
+    public void FillNavigationElement(GameObject parent, GameObject player)
     {
         _parent = parent;
-        go = Instantiate(prefab, transform.parent);
-        go.SetActive(true);
-        rTransform = go.GetComponent<RectTransform>();
-        _image = go.GetComponent<Image>();
-        return this;
+        gameObject.SetActive(true);
+        rTransform = GetComponent<RectTransform>();
+        _image = GetComponent<Image>();
+        _player = player;
     }
 
     private void Update()
     {
+        UpdatePositionOnBar();
         if (beingCarried)
         {
             _image.enabled = false;
@@ -42,25 +34,14 @@ public class NavigationElement : MonoBehaviour
         }
     }
 
-    private void CheckParentDeath()
+    public void UpdatePositionOnBar()
     {
-        if (!_parent)
-        {
-            Destroy(go);
-            //Navigation.Manager.RemoveElement(this);
-            //Destroy(gameObject);
-        }
-    }
-
-    public void UpdatePositionOnBar(Transform playerTransform)
-    {
-        CheckParentDeath();
-        if (!_parent)
+        if (_parent == null)
         {
             return;
         }
-        Vector2 playerLookDirection2D = new Vector2(playerTransform.forward.x, playerTransform.forward.z);
-        Vector3 playerToTree = _parent.transform.position - playerTransform.position;
+        Vector2 playerLookDirection2D = new Vector2(_player.transform.forward.x, _player.transform.forward.z);
+        Vector3 playerToTree = _parent.transform.position - _player.transform.position;
         Vector2 playerToTree2D = new Vector2(playerToTree.x, playerToTree.z).normalized;
         float angleBetween = Vector2.Angle(playerLookDirection2D, playerToTree2D);
         Vector2 directionalVec = playerToTree2D - playerLookDirection2D;
@@ -77,22 +58,6 @@ public class NavigationElement : MonoBehaviour
         else
         {
             rTransform.anchoredPosition = new Vector2(-200, 0);
-        }
-    }
-
-    private void OnPickUp(Grabable grabable)
-    {
-        if(grabable.gameObject == _parent)
-        {
-            beingCarried = true;
-        }
-    }
-
-    private void OnSetDown(Grabable grabable)
-    {
-        if(grabable.gameObject == _parent)
-        {
-            beingCarried = false;
         }
     }
 }

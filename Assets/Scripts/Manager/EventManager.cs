@@ -13,6 +13,8 @@ namespace Manager
 
         public event DelGrabable OnGrabableSpawnedEvent;
         public event DelGrabable OnGrabableRemovedEvent;
+        
+        public event DelGrabable OnProblemSolvedEvent;
 
         private void GrabableSpawnedEvent(Grabable grabable) {
             OnGrabableSpawnedEvent?.Invoke(grabable);
@@ -28,6 +30,14 @@ namespace Manager
 
         public void GrabableRemoved(Grabable grabable) {
             GrabableRemovedEvent(grabable);
+        }
+        
+        private void ProblemSolvedEvent(Grabable grabable) {
+            OnProblemSolvedEvent?.Invoke(grabable);
+        }
+
+        public void ProblemSolved(Grabable grabable) {
+            ProblemSolvedEvent(grabable);
         }
     }
 }
