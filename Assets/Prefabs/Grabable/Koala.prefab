@@ -111,6 +111,7 @@ MonoBehaviour:
   Type: 1
   RequiredType: 10
   UsableAction: {fileID: 4518968470929645932}
+  CanBeGrabbedByPlayer: 1
 --- !u!54 &7800967847619417591
 Rigidbody:
   m_ObjectHideFlags: 0

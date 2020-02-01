@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out target, pickUpRange))
         {
             var grabable = target.transform.GetComponent<Grabable>();
-            if (grabable)
+            if (grabable != null && grabable.CanBeGrabbedByPlayer)
             {
                 PickUp(grabable);
                 return;
@@ -100,8 +100,8 @@ public class PlayerController : MonoBehaviour
         if (returnObject)
         {
             Debug.Log($"{_carryingObject.Type} tries to help {usableObject.Type}");
-            _carryingObject.UsableAction.Help();
             PickUp(returnObject);
+            _carryingObject.UsableAction.Help();
         }
     }
 
@@ -110,13 +110,15 @@ public class PlayerController : MonoBehaviour
         _carryingObject = grabable;
         //Fuck off gravity
         grabable.GetComponent<Rigidbody>().isKinematic = true;
-        grabable.gameObject.transform.SetParent(_grabableHook, true);
+        grabable.GetComponent<BoxCollider>().enabled = false;
+        grabable.gameObject.transform.SetParent(_grabableHook, false);
     }
 
     private void Drop()
     {
         //Make sure gravity applies to this object
         _carryingObject.GetComponent<Rigidbody>().isKinematic = false;
+        _carryingObject.GetComponent<BoxCollider>().enabled = true;
         //unparent object
         _carryingObject.transform.SetParent(null);
         _carryingObject = _hands;
