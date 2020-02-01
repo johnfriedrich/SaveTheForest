@@ -17,7 +17,7 @@ public class NavigationElement : MonoBehaviour
     private void Start()
     {
         EventManager.Instance.OnGrabableRemovedEvent += OnPickUp;
-     //   EventManager.Instance.OnGrabableSpawnedEvent += 
+        EventManager.Instance.OnGrabableSpawnedEvent += OnSetDown;
     }
 
     public NavigationElement FillNavigationElement(GameObject prefab, GameObject parent)
