@@ -518,6 +518,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stomp
       objectReference: {fileID: 0}
+    - target: {fileID: 4900132384471970991, guid: 9a201f8a26ff55c4e8e0e2b03255eef6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8623726980707955206, guid: 9a201f8a26ff55c4e8e0e2b03255eef6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -526,7 +531,7 @@ PrefabInstance:
     - target: {fileID: 8623726980707955206, guid: 9a201f8a26ff55c4e8e0e2b03255eef6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.88
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8623726980707955206, guid: 9a201f8a26ff55c4e8e0e2b03255eef6,
         type: 3}
