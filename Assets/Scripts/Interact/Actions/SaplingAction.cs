@@ -9,8 +9,8 @@ public class SaplingAction : UsableAction
     {
         base.Use();
         Debug.Log("sapling action");
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        gameObject.GetComponent<Grabable>().CanBeGrabbedByPlayer = false;
+        var obj = PlayerController.Instance.Drop();
+        obj.CanBeGrabbedByPlayer = false;
         gameObject.GetComponentInChildren<TreeGrow>().enabled = true;
     }
 }

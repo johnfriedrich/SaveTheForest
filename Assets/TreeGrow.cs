@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using Interact;
+using LevelManagementScripts;
+using UnityEngine;
 
 public class TreeGrow : MonoBehaviour
 {
     private float timer;
 
     [SerializeField] private GameObject finalTree;
+    [SerializeField] private GameObject sapling;
     
     private Vector3 _destinationScale = new Vector3(3.0f, 3.0f, 3.0f);
     [SerializeField]
@@ -19,18 +22,20 @@ public class TreeGrow : MonoBehaviour
             ScaleOverTime(timer);
         }
 
-        if (finalTree.transform.localScale == _destinationScale)
+        if (sapling.transform.localScale == _destinationScale)
         {
-            finalTree.SetActive(true);
+            Destroy(sapling.gameObject);
             finalTree.transform.SetParent(null);
+            finalTree.SetActive(true);
+            ObjectSpawner.Instance.AddUsable(finalTree.GetComponent<UsableObject>());
             Destroy(gameObject);
         }
     }
     
     private void ScaleOverTime(float time)
     {
-        Vector3 originalScale = finalTree.transform.localScale;
+        Vector3 originalScale = sapling.transform.localScale;
         
-        finalTree.transform.localScale = Vector3.Lerp(originalScale, _destinationScale, time / _growSpeed);
+        sapling.transform.localScale = Vector3.Lerp(originalScale, _destinationScale, time / _growSpeed);
     }
 }

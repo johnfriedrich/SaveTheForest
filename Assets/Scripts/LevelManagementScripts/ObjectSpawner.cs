@@ -20,11 +20,25 @@ namespace LevelManagementScripts
         private float _fireTimer;
         private float _animalTimer;
 
+        public static ObjectSpawner Instance => _instance;
+
+        private static ObjectSpawner _instance;
+
+        private void Awake()
+        {
+            _instance = this;
+        }
+
         // Start is called before the first frame update
         private void Start()
         {
             _usableObjects = FindObjectsOfType<UsableObject>()
                 .Where(usableObject => usableObject.Type == InteractableEnum.Tree).ToList();
+        }
+
+        public void AddUsable(UsableObject usableObject)
+        {
+            _usableObjects.Add(usableObject);
         }
 
         private void Update()
