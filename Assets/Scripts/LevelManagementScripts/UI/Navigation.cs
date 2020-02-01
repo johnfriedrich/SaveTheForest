@@ -29,10 +29,6 @@ public class Navigation : MonoBehaviour
             Manager = this;
         }
         elements = new List<NavigationElement>();
-    }
-
-    private void Start()
-    {
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
