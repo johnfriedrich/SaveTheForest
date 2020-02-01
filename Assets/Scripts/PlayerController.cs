@@ -7,17 +7,14 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")] public float speed = 0;
     public float pickUpRange;
 
-    private CharacterController _cc;
     private bool _canCarry = true;
 
     [Header("Camera Settings")] public float minimumX = -90.0f;
     public float maximumX = 90.0f;
     public float cameraSmoothTime = 20.0f;
 
-    private void Awake()
-    {
-        _cc = GetComponent<CharacterController>();
-    }
+    [SerializeField] private Transform _grabableHook;
+    [SerializeField] private CharacterController _cc;
 
     private void Start()
     {
@@ -69,8 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private void PickUp(GameObject grabableObject)
     {
-        grabableObject.transform.parent = this.transform;
-        grabableObject.transform.localPosition += Vector3.up;
+        grabableObject.transform.SetParent(_grabableHook, false);
         _canCarry = false;
     }
 
