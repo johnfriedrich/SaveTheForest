@@ -23,17 +23,20 @@ namespace Interact
 
         private void Start()
         {
-            var grabables = GetComponentsInChildren<Grabable>();
-            for (int i = 0; i < grabables.Length; i++)
-            {
-                _grabables.Add(grabables[i]);
-            }
+            _grabables = GetComponentsInChildren<Grabable>().ToList();
         }
 
         public virtual Grabable TryHelp(Grabable otherGrabable)
         {
             var canHelp = false;
             Grabable grabToRemove = null;
+            if (_grabables.Count == 0)
+            {
+                return null;
+            }
+            {
+                
+            }
             foreach (var thisGrabable in _grabables.Where(thisGrabable => thisGrabable.RequiredType == otherGrabable.Type && !canHelp))
             {
                 if (otherGrabable.UsableAction) otherGrabable.UsableAction.Use();
