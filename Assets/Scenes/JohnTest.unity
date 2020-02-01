@@ -1113,6 +1113,11 @@ PrefabInstance:
       propertyPath: fireSpawnTime
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4074672826664781842, guid: 9f786314d1efd214db6f675f3ceba15b,
+        type: 3}
+      propertyPath: animalSpawnTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4074672826664781843, guid: 9f786314d1efd214db6f675f3ceba15b,
         type: 3}
       propertyPath: m_Name
