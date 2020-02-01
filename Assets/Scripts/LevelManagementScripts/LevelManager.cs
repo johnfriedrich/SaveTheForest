@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 
-public enum Problem { Fire, Animal};
+public enum Problem { Fire, Animal, Truck};
 
 public class LevelManager : MonoBehaviour
 {

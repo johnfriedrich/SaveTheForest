@@ -3,28 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Interact;
+using Manager;
 
 public class NavigationElement : MonoBehaviour
 {
     GameObject go;
     RectTransform rTransform;
-    Vector3 position;
     GameObject _parent;
+    bool beingCarried;
+    Image _image;
 
+    private void Start()
+    {
+        EventManager.Instance.OnGrabableRemovedEvent += OnPickUp;
+     //   EventManager.Instance.OnGrabableSpawnedEvent += 
+    }
 
-    public NavigationElement FillNavigationElement(Vector3 treePosition, GameObject prefab, GameObject parent)
+    public NavigationElement FillNavigationElement(GameObject prefab, GameObject parent)
     {
         _parent = parent;
-        position = treePosition;
         go = Instantiate(prefab, transform.parent);
         go.SetActive(true);
         rTransform = go.GetComponent<RectTransform>();
+        _image = go.GetComponent<Image>();
         return this;
     }
 
     private void Update()
     {
-        CheckParentDeath();
+        if (beingCarried)
+        {
+            _image.enabled = false;
+        }
+        else
+        {
+            _image.enabled = true;
+        }
     }
 
     private void CheckParentDeath()
@@ -39,8 +54,9 @@ public class NavigationElement : MonoBehaviour
 
     public void UpdatePositionOnBar(Transform playerTransform)
     {
+        CheckParentDeath();
         Vector2 playerLookDirection2D = new Vector2(playerTransform.forward.x, playerTransform.forward.z);
-        Vector3 playerToTree = position - playerTransform.position;
+        Vector3 playerToTree = _parent.transform.position - playerTransform.position;
         Vector2 playerToTree2D = new Vector2(playerToTree.x, playerToTree.z).normalized;
         float angleBetween = Vector2.Angle(playerLookDirection2D, playerToTree2D);
         Vector2 directionalVec = playerToTree2D - playerLookDirection2D;
@@ -57,6 +73,22 @@ public class NavigationElement : MonoBehaviour
         else
         {
             rTransform.anchoredPosition = new Vector2(-200, 0);
+        }
+    }
+
+    private void OnPickUp(Grabable grabable)
+    {
+        if(grabable.gameObject == _parent)
+        {
+            beingCarried = true;
+        }
+    }
+
+    private void OnSetDown(Grabable grabable)
+    {
+        if(grabable.gameObject == _parent)
+        {
+            beingCarried = false;
         }
     }
 }
