@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 209983680}
   - component: {fileID: 209983679}
   m_Layer: 5
-  m_Name: Button
+  m_Name: QuitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 1799465555}
   - component: {fileID: 1799465554}
   - component: {fileID: 1799465553}
+  - component: {fileID: 1799465557}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -644,6 +645,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1799465557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799465552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a65825c543f56343917dc78ba338e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuList: {fileID: 0}
+  creditsScreen: {fileID: 0}
 --- !u!1 &1958830453
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +852,7 @@ GameObject:
   - component: {fileID: 1991864140}
   - component: {fileID: 1991864139}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -904,7 +919,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1991864140}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1799465557}
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1991864140
 MonoBehaviour:
   m_ObjectHideFlags: 0

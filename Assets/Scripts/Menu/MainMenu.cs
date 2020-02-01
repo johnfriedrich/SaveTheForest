@@ -11,6 +11,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void QuitToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void ShowCreditScreen()
     {
         creditsScreen.SetActive(true);
