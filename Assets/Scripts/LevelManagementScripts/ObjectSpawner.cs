@@ -9,7 +9,6 @@ namespace LevelManagementScripts
 {
     public class ObjectSpawner : MonoBehaviour
     {
-        [SerializeField] private List<UsableObject> _usableObjects;
         [SerializeField]
         private float animalSpawnTime;
         [SerializeField]
@@ -30,11 +29,7 @@ namespace LevelManagementScripts
         }
 
         // Start is called before the first frame update
-        private void Start()
-        {
-            _usableObjects = FindObjectsOfType<UsableObject>()
-                .Where(usableObject => usableObject.Type == InteractableEnum.Tree).ToList();
-        }
+
 
         public void AddUsable(UsableObject usableObject)
         {
@@ -49,7 +44,7 @@ namespace LevelManagementScripts
             }
             else
             {
-                if (SpawnGrabable(fire))
+                if (SpawnGrabable(Problem.Fire))
                 {
                     LevelManager.Instance.ProblemSpawned(Problem.Fire);
                 }
@@ -62,7 +57,7 @@ namespace LevelManagementScripts
             }
             else
             {
-                if (SpawnGrabable(animal))
+                if (SpawnGrabable(Problem.Animal))
                 {
                     LevelManager.Instance.ProblemSpawned(Problem.Animal);
                 }
@@ -71,11 +66,26 @@ namespace LevelManagementScripts
         }
 
 
-        private bool SpawnGrabable(Grabable grabable)
+        private bool SpawnGrabable(Problem problem)
         {
+            Grabable grabable;
+            if(problem == Problem.Animal)
+            {
+                grabable = animal;
+            }
+            else
+            {
+                grabable = fire;
+            }
+            List<UsableObject> usableObjects = LevelManager.Instance.TreeObjects;
             int i = 0;
-            while (!_usableObjects[Random.Range(0, _usableObjects.Count)].TryPut(grabable) && i < _usableObjects.Count) i++;
-            return i < _usableObjects.Count;
+            UsableObject tree;
+            while (!(tree=usableObjects[Random.Range(0, usableObjects.Count)]).TryPut(grabable) && i < usableObjects.Count) i++;
+            if (i < usableObjects.Count)
+            {
+                Navigation.Manager.AddElement(tree.gameObject, problem);
+            }
+            return i < usableObjects.Count;
         }
     }
 }

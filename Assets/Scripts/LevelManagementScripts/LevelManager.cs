@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Interact;
+using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Enums;
 
 public enum Problem { Fire, Animal};
 
@@ -11,6 +14,9 @@ public class LevelManager : MonoBehaviour
     int[] _problems =  new int[2];
     public int MaxFires;
     public int MaxAnimals;
+
+    public List<UsableObject> TreeObjects;
+
 
 
     public int Animals { get => _problems[1]; }
@@ -26,6 +32,12 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    private void Start()
+    {
+        TreeObjects = FindObjectsOfType<UsableObject>()
+            .Where(usableObject => usableObject.Type == InteractableEnum.Tree).ToList();
     }
 
     private void FixedUpdate()
