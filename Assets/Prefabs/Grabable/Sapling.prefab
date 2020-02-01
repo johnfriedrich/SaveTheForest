@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 6547279325103971666}
   - component: {fileID: 7800967847619417591}
   - component: {fileID: 4518968470929645932}
+  - component: {fileID: 2863251603990408693}
   m_Layer: 0
-  m_Name: Stomp
+  m_Name: Sapling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,10 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3cf7f00f11d5a46abb8beeb0cb3ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 6
-  RequiredType: 9
-  UsableAction: {fileID: 0}
-  CanBeGrabbedByPlayer: 0
+  Type: 9
+  RequiredType: 6
+  UsableAction: {fileID: 2863251603990408693}
+  CanBeGrabbedByPlayer: 1
 --- !u!54 &7800967847619417591
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -138,5 +139,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c39d7b8baf0885d4abe9e0c4ec74456d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2863251603990408693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082583387005249900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d31977663619e04499c60e509ac28a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
