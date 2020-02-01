@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Interact;
+using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -59,8 +60,18 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out target, pickUpRange))
         {
-            
+            if (target.transform.GetComponent<Grabable>())
+            {
+                PickUp(target.transform.gameObject);
+            }
         }
+    }
+
+    private void PickUp(GameObject grabableObject)
+    {
+        grabableObject.transform.parent = this.transform;
+        grabableObject.transform.localPosition += Vector3.up;
+        _canCarry = false;
     }
 
 
