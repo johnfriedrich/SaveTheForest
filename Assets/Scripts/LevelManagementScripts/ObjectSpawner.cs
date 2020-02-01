@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Enums;
 using Interact;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -33,7 +31,7 @@ namespace LevelManagementScripts
 
         public void AddUsable(UsableObject usableObject)
         {
-            _usableObjects.Add(usableObject);
+            LevelManager.Instance.TreeObjects.Add(usableObject);
         }
 
         private void Update()
