@@ -10,6 +10,8 @@ namespace Interact
         [SerializeField]
         protected AudioSource _soundPlayer;
 
+        public InteractableEnum Type;
+
         [SerializeField] private Transform _fireTransform;
         [SerializeField] private Transform _animalTransform;
 
@@ -57,18 +59,32 @@ namespace Interact
         {
             if (!IsOnFire && grabable.Type == InteractableEnum.Fire)
             {
-                _grabables.Add(grabable);
-                grabable.gameObject.transform.SetParent(_fireTransform, false);
+                Put(grabable);
                 return true;
             }
             if (!HasNeedy && grabable.Type == InteractableEnum.Koala)
             {
-                _grabables.Add(grabable);
-                grabable.gameObject.transform.SetParent(_animalTransform, false);
+                Put(grabable);
                 return true;
             }
             return false;
         }
 
+        private void Put(Grabable grabable)
+        {
+            var clone = Instantiate(grabable);
+            _grabables.Add(clone);
+            if (clone.Type == InteractableEnum.Fire)
+            {
+                clone.gameObject.transform.SetParent(_fireTransform, false);
+                return;
+            }
+
+            if (clone.Type == InteractableEnum.Koala)
+            {
+                clone.gameObject.transform.SetParent(_animalTransform, false);
+                return;
+            }
+        }
     }
 }

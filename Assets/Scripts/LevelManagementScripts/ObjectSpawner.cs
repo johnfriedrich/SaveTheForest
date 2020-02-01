@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Enums;
 using Interact;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -22,12 +23,13 @@ namespace LevelManagementScripts
         // Start is called before the first frame update
         private void Start()
         {
-            _usableObjects = FindObjectsOfType<UsableObject>().ToList();
+            _usableObjects = FindObjectsOfType<UsableObject>()
+                .Where(usableObject => usableObject.Type == InteractableEnum.Tree).ToList();
         }
 
         private void Update()
         {
-            if (_fireTimer < animalSpawnTime)
+            if (_fireTimer < fireSpawnTime)
             {
                 _fireTimer += Time.deltaTime;
             }
@@ -37,7 +39,7 @@ namespace LevelManagementScripts
                 _fireTimer = 0;
             }
             
-            if (_animalTimer < fireSpawnTime)
+            if (_animalTimer < animalSpawnTime)
             {
                 _animalTimer  += Time.deltaTime;
             }
@@ -50,13 +52,13 @@ namespace LevelManagementScripts
 
         private bool SpawnFire()
         {
-            var usableObject = _usableObjects[Random.Range(0, _usableObjects.Count - 1)];
+            var usableObject = _usableObjects[Random.Range(0, _usableObjects.Count)];
             return usableObject.TryPut(fire);
         }
 
         private bool SpawnAnimal()
         {
-            var usableObject = _usableObjects[Random.Range(0, _usableObjects.Count - 1)];
+            var usableObject = _usableObjects[Random.Range(0, _usableObjects.Count)];
             return usableObject.TryPut(animal);
         }
     }
