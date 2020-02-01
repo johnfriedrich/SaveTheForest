@@ -11,5 +11,7 @@ namespace Interact
         
         public UsableAction UsableAction;
 
+        public bool CanBeGrabbedByPlayer;
+
     }
 }
