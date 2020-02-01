@@ -35,7 +35,7 @@ namespace LevelManagementScripts
             }
             else
             {
-                SpawnFire();
+                SpawnGrabable(fire);
                 _fireTimer = 0;
             }
             
@@ -45,21 +45,16 @@ namespace LevelManagementScripts
             }
             else
             {
-                SpawnAnimal();
+                SpawnGrabable(animal);
                 _animalTimer = 0;
             }
         }
 
-        private bool SpawnFire()
-        {
-            var usableObject = _usableObjects[Random.Range(0, _usableObjects.Count)];
-            return usableObject.TryPut(fire);
-        }
 
-        private bool SpawnAnimal()
+        private void SpawnGrabable(Grabable grabable)
         {
-            var usableObject = _usableObjects[Random.Range(0, _usableObjects.Count)];
-            return usableObject.TryPut(animal);
+            int i = 0;
+            while (!_usableObjects[Random.Range(0, _usableObjects.Count)].TryPut(grabable) && i++ < _usableObjects.Count) ;
         }
     }
 }
