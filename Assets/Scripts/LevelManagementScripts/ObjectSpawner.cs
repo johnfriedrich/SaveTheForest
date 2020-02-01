@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Interact;
 using Manager;
 using UnityEngine;
@@ -68,25 +69,19 @@ namespace LevelManagementScripts
         private bool SpawnGrabable(Problem problem)
         {
             Grabable grabable;
-            if(problem == Problem.Animal)
-            {
-                grabable = animal;
-            }
-            else
-            {
-                grabable = fire;
-            }
-            List<UsableObject> usableObjects = LevelManager.Instance.TreeObjects;
+            grabable = problem == Problem.Animal ? animal : fire;
+            var usableObjects = LevelManager.Instance.TreeObjects;
             if (usableObjects.Count == 0)
             {
-                 return true;
+                 return false;
             }
             int i = 0;
             UsableObject tree;
             while (!(tree=usableObjects[Random.Range(0, usableObjects.Count)]).TryPut(grabable) && i < usableObjects.Count) i++;
             if (i < usableObjects.Count)
             {
-                Navigation.Manager.AddElement(tree.gameObject.GetComponentInChildren<Grabable>().gameObject, problem);
+                var newgrab = tree.Grabables.FirstOrDefault(ding => ding.Type == grabable.Type);
+                Navigation.Manager.AddElement(newgrab.gameObject, problem);
             }
             EventManager.Instance.GrabableSpawned(grabable);
             return i < usableObjects.Count;

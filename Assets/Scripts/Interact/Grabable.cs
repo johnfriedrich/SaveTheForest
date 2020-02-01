@@ -1,4 +1,6 @@
-﻿using Enums;
+﻿using System;
+using Enums;
+using Manager;
 using UnityEngine;
 
 namespace Interact
@@ -43,6 +45,5 @@ namespace Interact
         public UsableAction UsableAction;
 
         public bool CanBeGrabbedByPlayer;
-
     }
 }

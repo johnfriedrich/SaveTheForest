@@ -40,7 +40,7 @@ public class Navigation : MonoBehaviour
         NavigationElement delete = null;
         foreach (var element in elements)
         {
-            if (!element.Type)
+            if (element.ParentIsNull || !element.Type)
             {
                 continue;
             }
@@ -53,7 +53,7 @@ public class Navigation : MonoBehaviour
         if (delete)
         {
             elements.Remove(delete);
-            Destroy(delete.gameObject);
+            delete.gameObject.SetActive(false);
         }
     }
 

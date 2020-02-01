@@ -11,6 +11,7 @@ public class NavigationElement : MonoBehaviour
     private GameObject _player;
 
     public Grabable Type => _parent.GetComponent<Grabable>();
+    public bool ParentIsNull => !_parent;
 
     public void FillNavigationElement(GameObject parent, GameObject player)
     {

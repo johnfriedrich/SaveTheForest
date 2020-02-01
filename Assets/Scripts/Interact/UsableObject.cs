@@ -18,6 +18,8 @@ namespace Interact
 
         [SerializeField] private List<Grabable> _grabables = new List<Grabable>();
 
+        public List<Grabable> Grabables => _grabables;
+
         public bool IsOnFire => Enumerable.Any(_grabables, grabable => grabable.Type == InteractableEnum.Fire);
 
         public bool HasNeedy => Enumerable.Any(_grabables, grabable => grabable.Type == InteractableEnum.Koala);
@@ -75,6 +77,10 @@ namespace Interact
         //Called to set objects on Fire or puts koalas
         public bool TryPut(Grabable grabable)
         {
+            if (!_fireTransform && !_animalTransform)
+            {
+                return false;
+            }
             if (!IsOnFire && grabable.Type == InteractableEnum.Fire)
             {
                 Put(grabable);
