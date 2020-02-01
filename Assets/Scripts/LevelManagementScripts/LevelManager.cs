@@ -62,6 +62,7 @@ public class LevelManager : MonoBehaviour
 
     public void ProblemSolved(Problem problem)
     {
+        Debug.Log($"Solved {problem}");
         _problems[(int)problem]--;
     }
 

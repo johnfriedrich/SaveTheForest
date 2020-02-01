@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4717063224991248157}
   - component: {fileID: 1318122480696726500}
   - component: {fileID: 3753008527427971926}
-  - component: {fileID: 2367593625260951795}
   - component: {fileID: 3515560665224137496}
+  - component: {fileID: 2367593625260951795}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Base
@@ -94,6 +94,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f431f238ffc35943930cf6d32ffe0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &3515560665224137496
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753859691426129720}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.21, y: 3.95, z: 8.23}
+  m_Center: {x: 0.37044525, y: 1.145365, z: 1.0010049}
 --- !u!65 &2367593625260951795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107,16 +120,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.35515, y: 2.323615, z: 3.3032446}
   m_Center: {x: 0.007534027, y: 1.145365, z: 0}
---- !u!65 &3515560665224137496
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753859691426129720}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 9.669813, y: 2.323615, z: 5.305254}
-  m_Center: {x: 0.37044525, y: 1.145365, z: 1.0010049}
