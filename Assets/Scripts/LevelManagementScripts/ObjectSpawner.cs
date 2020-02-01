@@ -83,7 +83,7 @@ namespace LevelManagementScripts
             while (!(tree=usableObjects[Random.Range(0, usableObjects.Count)]).TryPut(grabable) && i < usableObjects.Count) i++;
             if (i < usableObjects.Count)
             {
-                Navigation.Manager.AddElement(tree.gameObject, problem);
+                Navigation.Manager.AddElement(tree.gameObject.GetComponentInChildren<Grabable>().gameObject, problem);
             }
             return i < usableObjects.Count;
         }

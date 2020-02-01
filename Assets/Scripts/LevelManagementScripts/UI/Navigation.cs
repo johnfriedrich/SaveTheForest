@@ -60,7 +60,7 @@ public class Navigation : MonoBehaviour
         }
         GameObject go = Instantiate(NavElementPrefab, transform);
         NavigationElement navigationElement = go.GetComponent<NavigationElement>();
-        navigationElement.FillNavigationElement(parent.transform.position, prefab, parent);
+        navigationElement.FillNavigationElement(prefab, parent);
         elements.Add(navigationElement);
     }
 }
