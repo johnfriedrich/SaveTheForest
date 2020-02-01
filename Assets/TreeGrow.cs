@@ -26,6 +26,7 @@ public class TreeGrow : MonoBehaviour
         {
             Destroy(sapling.gameObject);
             finalTree.transform.SetParent(null);
+            finalTree.transform.localRotation = new Quaternion(0, 0, 0, 0);
             finalTree.SetActive(true);
             ObjectSpawner.Instance.AddUsable(finalTree.GetComponent<UsableObject>());
             Destroy(gameObject);
