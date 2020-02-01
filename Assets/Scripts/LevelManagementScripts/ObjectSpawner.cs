@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Enums;
 using Interact;
+using Manager;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -33,7 +32,7 @@ namespace LevelManagementScripts
 
         public void AddUsable(UsableObject usableObject)
         {
-            _usableObjects.Add(usableObject);
+            LevelManager.Instance.TreeObjects.Add(usableObject);
         }
 
         private void Update()
@@ -85,6 +84,7 @@ namespace LevelManagementScripts
             {
                 Navigation.Manager.AddElement(tree.gameObject.GetComponentInChildren<Grabable>().gameObject, problem);
             }
+            EventManager.Instance.GrabableSpawned(grabable);
             return i < usableObjects.Count;
         }
     }
