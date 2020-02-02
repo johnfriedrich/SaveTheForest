@@ -15,7 +15,7 @@ namespace Interact.Actions
         public void Sit()
         {
             _animator.SetBool("wave", false);
-            _animator.SetBool("true", true);
+            _animator.SetBool("sit", true);
         }
     }
 }
