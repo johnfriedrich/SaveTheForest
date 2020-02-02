@@ -30,6 +30,7 @@ public class TruckScript : MonoBehaviour
         _alreadyDeleviredGrabables.Add(grabable);
         grabable.CanBeGrabbedByPlayer = false;
         grabable.GetComponent<BoxCollider>().enabled = false;
+        grabable.GetComponent<Rigidbody>().isKinematic = true;
         EventManager.Instance.ProblemSolved(grabable);
         LevelManager.Instance.ProblemSolved(Problem.Animal);
     }
