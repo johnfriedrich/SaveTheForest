@@ -462,7 +462,7 @@ MonoBehaviour:
   _carryingObject: {fileID: 2412518165234827712}
   _grabableHook: {fileID: 2253532081847268919}
   _hands: {fileID: 2412518165234827712}
-  _lookSensitivity: 10
+  _lookSensitivity: 7
   CameraRotationLimit: 85
   _multiplier: 1.5
   _runSpeed: 5
