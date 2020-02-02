@@ -180,9 +180,9 @@ public class PlayerController : MonoBehaviour
         //unparent object
         _carryingObject.transform.SetParent(null);
         var oldObject = _carryingObject;
-        if (_carryingObject.UsableAction is KoalaAction s)
+        if (_carryingObject.UsableAction is KoalaAction k)
         {
-            s.Sit();
+            k.Sit();
         }
         EventManager.Instance.GrabableSpawned(oldObject);
         _carryingObject = _hands;
