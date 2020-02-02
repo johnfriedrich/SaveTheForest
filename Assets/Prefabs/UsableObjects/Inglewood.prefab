@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5accd9945afbaee43aabe2845baee5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burnDuration: 15
+  burnDuration: 11
   treeScript: {fileID: 2206732757342654043}
   stumpPrefab: {fileID: 2296093367899898616}
 --- !u!1001 &6785698579070026477

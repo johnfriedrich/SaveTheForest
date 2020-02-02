@@ -34,13 +34,9 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
         }
+        TreeObjects = FindObjectsOfType<UsableObject>().Where(usableObject => usableObject.Type == InteractableEnum.Tree).ToList();
     }
 
-    private void Start()
-    {
-        TreeObjects = FindObjectsOfType<UsableObject>()
-            .Where(usableObject => usableObject.Type == InteractableEnum.Tree).ToList();
-    }
 
     private static void Win()
     {

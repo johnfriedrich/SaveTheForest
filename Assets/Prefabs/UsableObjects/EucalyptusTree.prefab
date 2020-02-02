@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5accd9945afbaee43aabe2845baee5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burnDuration: 15
+  burnDuration: 11
   treeScript: {fileID: 7313801358695543020}
   stumpPrefab: {fileID: 6001986516081849275}
 --- !u!1001 &1350427640772981678
