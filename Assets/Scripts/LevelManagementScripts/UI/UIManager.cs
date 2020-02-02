@@ -17,14 +17,14 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        MaxAnimals.SetText("/" + LevelManager.Instance.MaxAnimals.ToString());
-        MaxFires.SetText("/" + LevelManager.Instance.MaxFires.ToString());
+        MaxAnimals.SetText("/" + LevelManager.Instance.KoalaGoal.ToString());
+        MaxFires.SetText("/" + LevelManager.Instance.MinTrees.ToString());
     }
 
     private void Update()
     {
-        AnimalCount.SetText(LevelManager.Instance.Animals.ToString());
-        FireCount.SetText(LevelManager.Instance.Fires.ToString());
+        AnimalCount.SetText(LevelManager.Instance.KoalasSaved.ToString());
+        FireCount.SetText(LevelManager.Instance.TreeObjects.Count.ToString());
 
         if (Input.GetKeyDown(KeyCode.Escape))
             _isPaused = !_isPaused;
