@@ -12,13 +12,11 @@ public enum Problem { Fire, Animal, Truck};
 public class LevelManager : MonoBehaviour
 {
     [SerializeField]
-    float _timeToWin;
-    float _countdown;
     public static LevelManager Instance;
     int[] _problems =  new int[2];
-    public int MaxFires;
-    public int MaxAnimals;
-
+    public int MinTrees;
+    public int KoalasSaved = 0;
+    public int KoalaGoal;
     public List<UsableObject> TreeObjects;
 
 
@@ -42,27 +40,31 @@ public class LevelManager : MonoBehaviour
     {
         TreeObjects = FindObjectsOfType<UsableObject>()
             .Where(usableObject => usableObject.Type == InteractableEnum.Tree).ToList();
-        _countdown = _timeToWin;
     }
 
-    private void Update()
+    private static void Win()
     {
-        _countdown -= Time.deltaTime;
-        if(_countdown <= 0)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene(3);
-        }
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene(3);
     }
 
     private void FixedUpdate()
     {
         CheckGameOver();
+        CheckWin();
+    }
+
+    private void CheckWin()
+    {
+        if (KoalasSaved >= KoalaGoal)
+        {
+            Win();
+        }
     }
 
     private void CheckGameOver()
     {
-        if (_problems[0] >= MaxFires || _problems[1] >= MaxAnimals) GameOver();
+        if (TreeObjects.Count < MinTrees) GameOver();
     }
 
     private void GameOver()
@@ -78,8 +80,12 @@ public class LevelManager : MonoBehaviour
 
     public void ProblemSolved(Problem problem)
     {
-        Debug.Log($"Solved {problem}");
+        if(problem == Problem.Animal)
+        {
+            KoalasSaved++;
+        }
         _problems[(int)problem]--;
+
     }
 
 }
