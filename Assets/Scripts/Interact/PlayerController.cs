@@ -18,11 +18,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Grabable _hands;
 
-    [Header("Movement")] [SerializeField] private float _speed = 5f;
-    [SerializeField] private float _maxVelocityChange = 10f;
-
     [Header("CameraRotation")] [SerializeField]
-    private float _lookSensitivity = 10f;
+    private float _lookSensitivity = 12f;
 
     [SerializeField] public float CameraRotationLimit = 85f;
 
@@ -30,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private float _cameraRotationX;
     private float _currentCameraRotationX;
     private Rigidbody _rb;
+    [SerializeField] private float _multiplier = 2f;
+    [SerializeField] private float _runSpeed = 5f;
 
     private static PlayerController _instance;
 
@@ -55,10 +54,16 @@ public class PlayerController : MonoBehaviour
         {
             Interact();
         }
-        if (Input.GetKey("w")) transform.Translate(Vector3.forward * Time.deltaTime * 3);
-        if (Input.GetKey("s")) transform.Translate(Vector3.back * Time.deltaTime * 3);
-        if (Input.GetKey("a")) transform.Translate(Vector3.left * Time.deltaTime * 3);
-        if (Input.GetKey("d")) transform.Translate(Vector3.right * Time.deltaTime * 3);
+
+        var finalMulti = 1f;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            finalMulti = _multiplier;
+        }
+        if (Input.GetKey("w")) transform.Translate(Vector3.forward * (Time.deltaTime * _runSpeed * finalMulti));
+        if (Input.GetKey("s")) transform.Translate(Vector3.back * (Time.deltaTime * _runSpeed * finalMulti));
+        if (Input.GetKey("a")) transform.Translate(Vector3.left * (Time.deltaTime * _runSpeed * finalMulti));
+        if (Input.GetKey("d")) transform.Translate(Vector3.right * (Time.deltaTime * _runSpeed * finalMulti));
         
         Rotate();
 

@@ -462,10 +462,10 @@ MonoBehaviour:
   _carryingObject: {fileID: 2412518165234827712}
   _grabableHook: {fileID: 2253532081847268919}
   _hands: {fileID: 2412518165234827712}
-  _speed: 5
-  _maxVelocityChange: 10
   _lookSensitivity: 10
   CameraRotationLimit: 85
+  _multiplier: 1.5
+  _runSpeed: 5
 --- !u!54 &6964446109969606526
 Rigidbody:
   m_ObjectHideFlags: 0

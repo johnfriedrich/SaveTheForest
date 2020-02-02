@@ -9,7 +9,7 @@ public class TruckScript : MonoBehaviour
     private List<Grabable> _alreadyDeleviredGrabables = new List<Grabable>();
     
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Navigation.Manager.AddElement(gameObject, Problem.Truck);
         EventManager.Instance.OnGrabableSpawnedEvent += CheckIfInZone;
@@ -26,8 +26,10 @@ public class TruckScript : MonoBehaviour
         {
             return;
         }
-        
+
         _alreadyDeleviredGrabables.Add(grabable);
+        grabable.CanBeGrabbedByPlayer = false;
+        grabable.GetComponent<BoxCollider>().enabled = false;
         EventManager.Instance.ProblemSolved(grabable);
         LevelManager.Instance.ProblemSolved(Problem.Animal);
     }
