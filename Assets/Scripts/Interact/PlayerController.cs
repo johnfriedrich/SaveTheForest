@@ -188,6 +188,11 @@ public class PlayerController : MonoBehaviour
         {
             k.Sit();
         }
+        if (_carryingObject.Type == InteractableEnum.EmptyWaterBucket || _carryingObject.Type == InteractableEnum.FullWaterBucket 
+                                                                      || _carryingObject.Type == InteractableEnum.Sapling)
+        {
+            _carryingObject.gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
         EventManager.Instance.GrabableSpawned(oldObject);
         _carryingObject = _hands;
         return oldObject;
