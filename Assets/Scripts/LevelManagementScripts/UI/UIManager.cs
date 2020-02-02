@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
             _isPaused = !_isPaused;
 
         TogglePauseMenu(_isPaused);
+        Cursor.visible = _isPaused;
     }
 
     public void TogglePauseMenu(bool isPaused)
