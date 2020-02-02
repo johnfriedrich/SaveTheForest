@@ -30,16 +30,14 @@ public class Navigation : MonoBehaviour
         }
         _elements = new List<NavigationElement>();
         _player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    private void Start()
-    {
         EventManager.Instance.OnProblemSolvedEvent += RemoveElement;
+        EventManager.Instance.OnGrabableDestroyedEvent += RemoveElement;
     }
 
     private void OnDestroy()
     {
         EventManager.Instance.OnProblemSolvedEvent -= RemoveElement;
+        EventManager.Instance.OnGrabableDestroyedEvent -= RemoveElement;
     }
 
     public void RemoveElement(Grabable grabable)

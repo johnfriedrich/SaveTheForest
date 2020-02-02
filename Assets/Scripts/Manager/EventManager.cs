@@ -3,16 +3,15 @@
 namespace Manager
 {
     public class EventManager {
-
         public static EventManager Instance { get { if (_instance == null) { _instance = new EventManager(); } return _instance; } }
 
         private static EventManager _instance;
 
-        public delegate void DelSimple();
         public delegate void DelGrabable(Grabable grabable);
 
         public event DelGrabable OnGrabableSpawnedEvent;
         public event DelGrabable OnGrabableRemovedEvent;
+        public event DelGrabable OnGrabableDestroyedEvent;
         
         public event DelGrabable OnProblemSolvedEvent;
 
@@ -38,6 +37,14 @@ namespace Manager
 
         public void ProblemSolved(Grabable grabable) {
             ProblemSolvedEvent(grabable);
+        }
+        
+        private void GrabableDestroyedEvent(Grabable grabable) {
+            OnGrabableDestroyedEvent?.Invoke(grabable);
+        }
+
+        public void GrabableDestroyed(Grabable grabable) {
+            GrabableDestroyedEvent(grabable);
         }
     }
 }

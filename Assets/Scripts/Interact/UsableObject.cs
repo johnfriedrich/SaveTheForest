@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Enums;
 using Manager;
@@ -108,6 +109,14 @@ namespace Interact
             {
                 clone.gameObject.transform.SetParent(_animalTransform, false);
                 return;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            foreach (var _grabable in _grabables)
+            {
+                EventManager.Instance.GrabableDestroyed(_grabable);
             }
         }
     }
