@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinTrees: 6
   KoalasSaved: 0
-  KoalaGoal: 15
+  KoalaGoal: 20
   TreeObjects: []
