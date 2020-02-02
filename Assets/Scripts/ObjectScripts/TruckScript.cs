@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Enums;
 using Interact;
@@ -15,6 +16,12 @@ public class TruckScript : MonoBehaviour
     {
         Navigation.Manager.AddElement(gameObject, Problem.Truck);
         EventManager.Instance.OnGrabableSpawnedEvent += CheckIfInZone;
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+        EventManager.Instance.OnGrabableSpawnedEvent -= CheckIfInZone;
     }
 
     private void CheckIfInZone(Grabable grabable)

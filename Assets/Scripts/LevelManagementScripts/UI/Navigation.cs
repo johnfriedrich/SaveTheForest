@@ -8,7 +8,7 @@ using UnityEngine;
 public class Navigation : MonoBehaviour
 {
     private GameObject _player;
-    List<NavigationElement> elements;
+    private List<NavigationElement> _elements;
     public static Navigation Manager;
     [SerializeField]
     GameObject koalaSpritePrefab;
@@ -26,7 +26,7 @@ public class Navigation : MonoBehaviour
         {
             Manager = this;
         }
-        elements = new List<NavigationElement>();
+        _elements = new List<NavigationElement>();
         _player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -35,10 +35,15 @@ public class Navigation : MonoBehaviour
         EventManager.Instance.OnProblemSolvedEvent += RemoveElement;
     }
 
+    private void OnDestroy()
+    {
+        EventManager.Instance.OnProblemSolvedEvent -= RemoveElement;
+    }
+
     public void RemoveElement(Grabable grabable)
     {
         NavigationElement delete = null;
-        foreach (var element in elements)
+        foreach (var element in _elements)
         {
             if (element.ParentIsNull || !element.Type)
             {
@@ -52,7 +57,7 @@ public class Navigation : MonoBehaviour
 
         if (delete)
         {
-            elements.Remove(delete);
+            _elements.Remove(delete);
             delete.gameObject.SetActive(false);
         }
     }
@@ -77,6 +82,6 @@ public class Navigation : MonoBehaviour
         }
         var navigationElement = Instantiate(prefab, transform).GetComponent<NavigationElement>();
         navigationElement.FillNavigationElement(parent, _player);
-        elements.Add(navigationElement);
+        _elements.Add(navigationElement);
     }
 }
