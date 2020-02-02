@@ -44,21 +44,25 @@ public class NavigationElement : MonoBehaviour
         Vector2 playerLookDirection2D = new Vector2(_player.transform.forward.x, _player.transform.forward.z);
         Vector3 playerToTree = _parent.transform.position - _player.transform.position;
         Vector2 playerToTree2D = new Vector2(playerToTree.x, playerToTree.z).normalized;
-        float angleBetween = Vector2.Angle(playerLookDirection2D, playerToTree2D);
-        Vector2 directionalVec = playerToTree2D - playerLookDirection2D;
-        if (directionalVec.x < 0) angleBetween *= -1;
+        //float angleBetween = Vector2.Angle(playerLookDirection2D, playerToTree2D);
+        //Vector2 directionalVec = playerToTree2D - playerLookDirection2D;
+        //if (directionalVec.x < 0) angleBetween *= -1;
+        float angleBetween = Mathf.Atan2(playerLookDirection2D.y, playerLookDirection2D.x) - Mathf.Atan2(playerToTree2D.y, playerToTree2D.x);
+        angleBetween *= Mathf.Rad2Deg;
+        if (angleBetween < -180) angleBetween += 360;
+        if (angleBetween > 180) angleBetween -= 360;
         if (angleBetween > -70 && angleBetween < 70)
         {
-            Vector2 pos = new Vector2(Mathf.Sin(angleBetween * Mathf.Deg2Rad) * -200, rTransform.anchoredPosition.y);
+            Vector2 pos = new Vector2(Mathf.Sin(angleBetween * Mathf.Deg2Rad) * 200, rTransform.anchoredPosition.y);
             rTransform.anchoredPosition = pos;
         }
         else if (angleBetween < -45)
         {
-            rTransform.anchoredPosition = new Vector2(200, 0);
+            rTransform.anchoredPosition = new Vector2(-200, 0);
         }
         else
         {
-            rTransform.anchoredPosition = new Vector2(-200, 0);
+            rTransform.anchoredPosition = new Vector2(200, 0);
         }
     }
 }
