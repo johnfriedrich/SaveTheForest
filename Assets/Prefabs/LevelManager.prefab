@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423d1da1d0320da4da084043996d77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToWin: 120
-  MaxFires: 20
-  MaxAnimals: 20
+  MinTrees: 4
+  KoalasSaved: 0
+  KoalaGoal: 15
   TreeObjects: []
