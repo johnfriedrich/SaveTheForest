@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Enums;
 using Interact;
 using Manager;
@@ -29,9 +30,15 @@ public class TruckScript : MonoBehaviour
 
         _alreadyDeleviredGrabables.Add(grabable);
         grabable.CanBeGrabbedByPlayer = false;
-        grabable.GetComponent<BoxCollider>().enabled = false;
-        grabable.GetComponent<Rigidbody>().isKinematic = true;
+        StartCoroutine(DisableCollider(grabable));
         EventManager.Instance.ProblemSolved(grabable);
         LevelManager.Instance.ProblemSolved(Problem.Animal);
+    }
+
+    private IEnumerator DisableCollider(Grabable grabable)
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        grabable.GetComponent<BoxCollider>().enabled = false;
+        grabable.GetComponent<Rigidbody>().isKinematic = true;
     }
 }
