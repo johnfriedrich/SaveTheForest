@@ -53,16 +53,16 @@ public class NavigationElement : MonoBehaviour
         if (angleBetween > 180) angleBetween -= 360;
         if (angleBetween > -70 && angleBetween < 70)
         {
-            Vector2 pos = new Vector2(Mathf.Sin(angleBetween * Mathf.Deg2Rad) * 200, rTransform.anchoredPosition.y);
+            Vector2 pos = new Vector2(Mathf.Sin(angleBetween * Mathf.Deg2Rad) * 550, rTransform.anchoredPosition.y);
             rTransform.anchoredPosition = pos;
         }
         else if (angleBetween < -45)
         {
-            rTransform.anchoredPosition = new Vector2(-200, 0);
+            rTransform.anchoredPosition = new Vector2(-550, 0);
         }
         else
         {
-            rTransform.anchoredPosition = new Vector2(200, 0);
+            rTransform.anchoredPosition = new Vector2(550, 0);
         }
     }
 }

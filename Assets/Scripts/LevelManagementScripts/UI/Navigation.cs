@@ -16,6 +16,8 @@ public class Navigation : MonoBehaviour
     GameObject fireSpritePrefab;
     [SerializeField]
     GameObject truckSpritePrefab;
+
+    [SerializeField] private Transform _holder;
     private void Awake()
     {
         if (Manager)
@@ -80,7 +82,7 @@ public class Navigation : MonoBehaviour
                 prefab = null;
                 break;
         }
-        var navigationElement = Instantiate(prefab, transform).GetComponent<NavigationElement>();
+        var navigationElement = Instantiate(prefab, _holder).GetComponent<NavigationElement>();
         navigationElement.FillNavigationElement(parent, _player);
         _elements.Add(navigationElement);
     }
