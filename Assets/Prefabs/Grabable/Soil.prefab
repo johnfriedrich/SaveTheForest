@@ -91,7 +91,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4082583387005249900}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3cf7f00f11d5a46abb8beeb0cb3ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cooldown: 10
+  AudioClip: {fileID: 0}
   Type: 10
   RequiredType: 9
   UsableAction: {fileID: 5940112649185655048}
@@ -140,4 +142,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79e05d3c13c75141806d77a95858cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sapling: {fileID: 0}
