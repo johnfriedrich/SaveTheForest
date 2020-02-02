@@ -29,7 +29,25 @@ namespace LevelManagementScripts
         }
 
         // Start is called before the first frame update
-
+        private void Start()
+        {
+            if (SpawnGrabable(Problem.Fire))
+            {
+                LevelManager.Instance.ProblemSpawned(Problem.Fire);
+            }
+            if (SpawnGrabable(Problem.Fire))
+            {
+                LevelManager.Instance.ProblemSpawned(Problem.Fire);
+            }
+            if (SpawnGrabable(Problem.Animal))
+            {
+                LevelManager.Instance.ProblemSpawned(Problem.Animal);
+            }
+            if (SpawnGrabable(Problem.Animal))
+            {
+                LevelManager.Instance.ProblemSpawned(Problem.Animal);
+            }
+        }
 
         public void AddUsable(UsableObject usableObject)
         {
