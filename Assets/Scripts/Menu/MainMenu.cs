@@ -5,7 +5,12 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject menuList;
     [SerializeField] private GameObject creditsScreen;
-    
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene(1);
