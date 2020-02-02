@@ -126,8 +126,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        RaycastHit target;
-        if (Physics.Raycast(transform.position, transform.forward, out target, pickUpRange))
+        if (Physics.Raycast(transform.position, transform.forward, out var target, pickUpRange))
         {
             var treeFarm = target.transform.GetComponent<TreeFarm>();
             if (treeFarm)
