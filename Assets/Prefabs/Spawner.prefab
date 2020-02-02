@@ -45,9 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7aeaf2cbeff334d8fe481c60277d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _usableObjects: []
   animalSpawnTime: 10
-  fireSpawnTime: 10
+  fireSpawnTime: 20
   fire: {fileID: 3467100847543149618}
   animal: {fileID: 7084371685986700307}
 --- !u!1001 &4074672825027808534
