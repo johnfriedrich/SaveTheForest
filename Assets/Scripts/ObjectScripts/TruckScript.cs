@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class TruckScript : MonoBehaviour
 {
+    [SerializeField]
     private List<Grabable> _alreadyDeleviredGrabables = new List<Grabable>();
     
     // Start is called before the first frame update
