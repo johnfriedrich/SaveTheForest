@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
             Instance = this;
         }
         TreeObjects = FindObjectsOfType<UsableObject>().Where(usableObject => usableObject.Type == InteractableEnum.Tree).ToList();
+        Cursor.visible = false;
     }
 
 
